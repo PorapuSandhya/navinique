@@ -266,7 +266,7 @@ function OrdersTab() {
   };
 
   const updateStatus = async (orderId: string, status: string) => {
-    await supabase.from("orders").update({ status }).eq("id", orderId);
+    await supabase.from("orders").update({ status: status as any }).eq("id", orderId);
     setOrders(orders.map((o) => (o.id === orderId ? { ...o, status } : o)));
     if (selectedOrder?.id === orderId) setSelectedOrder({ ...selectedOrder, status });
   };
