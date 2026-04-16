@@ -22,14 +22,14 @@ export default function Footer() {
               Where tradition meets modern elegance. Curated ethnic wear for every occasion.
             </p>
             <div className="flex items-center gap-3">
-              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors">
-                <Instagram size={16} />
+              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors text-sm">
+                IG
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors">
-                <Facebook size={16} />
+              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors text-sm">
+                FB
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors">
-                <Twitter size={16} />
+              <a href="#" className="w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center hover:bg-gold/30 transition-colors text-sm">
+                TW
               </a>
             </div>
           </div>
