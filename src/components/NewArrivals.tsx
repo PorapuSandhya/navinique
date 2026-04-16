@@ -33,7 +33,6 @@ export default function NewArrivals() {
     try {
       await addToCart(productId);
       toast.success("Added to cart!");
-      // Dispatch event so header updates cart count
       window.dispatchEvent(new Event("cart-updated"));
     } catch {
       toast.error("Failed to add to cart");
@@ -43,7 +42,7 @@ export default function NewArrivals() {
   };
 
   return (
-    <section id="new-arrivals" className="section-padding">
+    <section id="products" className="section-padding">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,7 +51,7 @@ export default function NewArrivals() {
           className="text-center mb-12"
         >
           <p className="text-gold font-elegant italic text-lg mb-2">Just In</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">New Arrivals</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Products</h2>
           <div className="w-16 h-0.5 bg-gold mx-auto mt-4" />
         </motion.div>
 
@@ -96,11 +95,7 @@ export default function NewArrivals() {
                 <h3 className="font-display text-sm md:text-base font-semibold text-foreground truncate">{p.name}</h3>
                 <div className="flex items-center gap-1 mt-1">
                   {Array.from({ length: 5 }).map((_, idx) => (
-                    <Star
-                      key={idx}
-                      size={12}
-                      className={idx < Math.floor(p.rating || 0) ? "fill-gold text-gold" : "text-border"}
-                    />
+                    <Star key={idx} size={12} className={idx < Math.floor(p.rating || 0) ? "fill-gold text-gold" : "text-border"} />
                   ))}
                   <span className="text-xs text-muted-foreground ml-1">{p.rating}</span>
                 </div>

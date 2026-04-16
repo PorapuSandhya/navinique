@@ -4,7 +4,7 @@ import { Star, Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Priya Sharma",
-    text: "The bridal lehenga I got from Devi Elegance was absolutely stunning! The craftsmanship and attention to detail were exceptional.",
+    text: "The bridal lehenga I got from Navinique was absolutely stunning! The craftsmanship and attention to detail were exceptional.",
     rating: 5,
     location: "Hyderabad",
   },
@@ -24,7 +24,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="section-padding bg-blush-gradient">
+    <section id="reviews" className="section-padding bg-blush-gradient">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -34,7 +34,7 @@ export default function Testimonials() {
         >
           <p className="text-gold font-elegant italic text-lg mb-2">What Our Customers Say</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Testimonials
+            Reviews
           </h2>
           <div className="w-16 h-0.5 bg-gold mx-auto mt-4" />
         </motion.div>

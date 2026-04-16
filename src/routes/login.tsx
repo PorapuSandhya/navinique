@@ -13,8 +13,8 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Login — Devi Elegance" },
-      { name: "description", content: "Sign in to your Devi Elegance account." },
+      { title: "Login — Navinique" },
+      { name: "description", content: "Sign in to your Navinique account." },
     ],
   }),
   component: LoginPage,
@@ -98,7 +98,7 @@ function LoginPage() {
         className="w-full max-w-md bg-card rounded-lg border border-border p-8 shadow-lg"
       >
         <div className="text-center mb-8">
-          <h1 className="font-display text-2xl font-bold text-gold-gradient">Devi Elegance</h1>
+          <h1 className="font-display text-2xl font-bold text-gold-gradient">Navinique</h1>
           <p className="font-body text-muted-foreground text-sm mt-1">
             {mode === "otp" ? "Sign in with email link" : mode === "signup" ? "Create your account" : "Welcome back"}
           </p>
