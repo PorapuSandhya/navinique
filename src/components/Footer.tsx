@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook, Twitter, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
