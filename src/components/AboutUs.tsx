@@ -12,18 +12,18 @@ export default function AboutUs() {
           >
             <p className="text-gold font-elegant italic text-lg mb-2">Our Story</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              About Devi Elegance
+              About Navinique
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-6" />
             <p className="font-body text-foreground/70 leading-relaxed mb-4">
-              Founded by <strong className="text-foreground">Devi</strong> and her brother{" "}
-              <strong className="text-foreground">Naveen</strong>, our boutique is a celebration of
+              Founded by <strong className="text-foreground">Sandhya</strong> and her brother{" "}
+              <strong className="text-foreground">Naveen</strong>, Navinique is a celebration of
               Indian craftsmanship and modern elegance. What started as a small dream in a cozy
               corner has blossomed into a destination for those who cherish tradition with a
               contemporary twist.
             </p>
             <p className="font-body text-foreground/70 leading-relaxed mb-4">
-              Devi brings her keen eye for design and deep love for handwoven textiles, while Naveen
+              Sandhya brings her keen eye for design and deep love for handwoven textiles, while Naveen
               ensures every customer experience is seamless and memorable. Together, they curate
               collections that honor the artistry of Indian weavers and tailors.
             </p>

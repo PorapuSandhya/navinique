@@ -6,12 +6,11 @@ import { getCartItems } from "@/lib/cart-store";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Collections", href: "#collections" },
-  { label: "New Arrivals", href: "#new-arrivals" },
+  { label: "Products", href: "#products" },
+  { label: "Gallery", href: "#gallery" },
   { label: "About Us", href: "#about-us" },
-  { label: "Services", href: "#services" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 export default function Header() {
@@ -40,7 +39,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2">
             <span className="font-display text-xl md:text-2xl font-bold text-gold-gradient">
-              Devi Elegance
+              Navinique
             </span>
           </Link>
 
