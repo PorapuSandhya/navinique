@@ -35,6 +35,10 @@ export const Route = createRootRoute({
       { name: "author", content: "Devi Elegance" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Devi Elegance Boutique" },
+      { name: "twitter:title", content: "Devi Elegance Boutique" },
+      { property: "og:description", content: "Handcrafted ethnic wear curated by Devi & Naveen. Sarees, lehengas, kurtis, and bridal wear." },
+      { name: "twitter:description", content: "Handcrafted ethnic wear curated by Devi & Naveen. Sarees, lehengas, kurtis, and bridal wear." },
     ],
     links: [
       {
