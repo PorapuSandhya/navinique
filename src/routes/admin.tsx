@@ -9,7 +9,7 @@ import { LogOut, ShoppingBag, Package, BarChart3, Image, Plus, Trash2, Edit } fr
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin Dashboard — Devi Elegance" },
+      { title: "Admin Dashboard — Navinique" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -61,7 +61,7 @@ function AdminPage() {
     <div className="min-h-screen bg-background">
       <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
         <div>
-          <h1 className="font-display text-xl font-bold text-gold-gradient">Devi Elegance Admin</h1>
+          <h1 className="font-display text-xl font-bold text-gold-gradient">Navinique Admin</h1>
           <p className="font-body text-xs text-muted-foreground">Super Admin: {user.email}</p>
         </div>
         <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 text-sm font-body text-foreground/60 hover:text-destructive transition-colors border border-border rounded-sm">

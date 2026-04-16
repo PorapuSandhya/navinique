@@ -11,7 +11,7 @@ import { CheckCircle } from "lucide-react";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout — Devi Elegance" },
+      { title: "Checkout — Navinique" },
       { name: "description", content: "Complete your order with delivery details." },
     ],
   }),
@@ -91,7 +91,7 @@ function CheckoutPage() {
             <CheckCircle size={64} className="mx-auto text-green-500 mb-4" />
           </motion.div>
           <h1 className="font-display text-3xl font-bold text-foreground mb-2">Order Placed!</h1>
-          <p className="font-body text-muted-foreground mb-2">Thank you for shopping with Devi Elegance.</p>
+          <p className="font-body text-muted-foreground mb-2">Thank you for shopping with Navinique.</p>
           <p className="font-body text-sm text-muted-foreground mb-8">Order ID: <span className="font-bold text-foreground">{orderId.slice(0, 8).toUpperCase()}</span></p>
           <div className="flex gap-4 justify-center">
             <button
