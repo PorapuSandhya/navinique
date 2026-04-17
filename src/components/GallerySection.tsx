@@ -130,13 +130,15 @@ export default function GallerySection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((img, i) => (
-            <motion.div
+            <motion.button
               key={img.id}
+              type="button"
+              onClick={() => handleImageClick(img)}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer"
+              className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-gold"
             >
               <img
                 src={GALLERY_IMAGES[img.title] || img.image_url}
