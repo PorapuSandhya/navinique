@@ -17,6 +17,33 @@ const GALLERY_IMAGES: Record<string, string> = {
   "Designer Lehengas": lehengasImg,
 };
 
+// Map gallery titles + categories to product category slugs
+const TITLE_TO_SLUG: Record<string, string> = {
+  "Bridal Collection": "lehengas",
+  "Silk Sarees": "sarees",
+  "Festive Kurtis": "kurtis",
+  "Ethnic Accessories": "accessories",
+  "Kids Ethnic Wear": "kids-wear",
+  "Designer Lehengas": "lehengas",
+};
+
+const CATEGORY_TO_SLUG: Record<string, string> = {
+  Sarees: "sarees",
+  Lehengas: "lehengas",
+  Kurtis: "kurtis",
+  "Kids Wear": "kids-wear",
+  Accessories: "accessories",
+  Bridal: "lehengas",
+};
+
+const SLUG_TO_NAME: Record<string, string> = {
+  sarees: "Sarees",
+  lehengas: "Lehengas",
+  kurtis: "Kurtis",
+  "kids-wear": "Kids Wear",
+  accessories: "Accessories",
+};
+
 type GalleryImage = {
   id: string;
   title: string;
@@ -27,6 +54,7 @@ type GalleryImage = {
 export default function GallerySection() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [filter, setFilter] = useState("All");
+  const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
 
   useEffect(() => {
     supabase
@@ -34,7 +62,36 @@ export default function GallerySection() {
       .select("id, title, image_url, category")
       .order("sort_order")
       .then(({ data }) => setImages(data || []));
+
+    supabase
+      .from("categories")
+      .select("id, slug")
+      .then(({ data }) => {
+        const map: Record<string, string> = {};
+        (data || []).forEach((c) => {
+          map[c.slug] = c.id;
+        });
+        setCategoryMap(map);
+      });
   }, []);
+
+  const handleImageClick = (img: GalleryImage) => {
+    const slug =
+      TITLE_TO_SLUG[img.title] ||
+      (img.category ? CATEGORY_TO_SLUG[img.category] : undefined);
+    if (!slug) return;
+    const id = categoryMap[slug];
+    if (!id) return;
+    window.dispatchEvent(
+      new CustomEvent("category-selected", {
+        detail: { id, slug, name: SLUG_TO_NAME[slug] || img.category || img.title },
+      })
+    );
+    const el = document.getElementById("products");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const categories = ["All", ...Array.from(new Set(images.map((i) => i.category).filter(Boolean)))];
   const filtered = filter === "All" ? images : images.filter((i) => i.category === filter);
@@ -73,13 +130,15 @@ export default function GallerySection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((img, i) => (
-            <motion.div
+            <motion.button
               key={img.id}
+              type="button"
+              onClick={() => handleImageClick(img)}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer"
+              className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-gold"
             >
               <img
                 src={GALLERY_IMAGES[img.title] || img.image_url}
@@ -94,7 +153,7 @@ export default function GallerySection() {
                   <p className="font-body text-xs text-cream/70">{img.category}</p>
                 )}
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
 
