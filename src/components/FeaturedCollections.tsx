@@ -1,6 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import sareesImg from "@/assets/cat-sarees.jpg";
+import lehengasImg from "@/assets/cat-lehengas.jpg";
+import kurtisImg from "@/assets/cat-kurtis.jpg";
+import kidsImg from "@/assets/cat-kids.jpg";
+import accessoriesImg from "@/assets/cat-accessories.jpg";
+
+const CATEGORY_IMAGES: Record<string, string> = {
+  sarees: sareesImg,
+  lehengas: lehengasImg,
+  kurtis: kurtisImg,
+  "kids-wear": kidsImg,
+  accessories: accessoriesImg,
+};
 
 type Category = {
   id: string;
@@ -45,7 +58,7 @@ export default function FeaturedCollections() {
               className="group relative aspect-[3/4] rounded-lg overflow-hidden cursor-pointer"
             >
               <img
-                src={cat.image_url || `https://placehold.co/400x533?text=${cat.name}`}
+                src={CATEGORY_IMAGES[cat.slug] || cat.image_url || `https://placehold.co/400x533?text=${cat.name}`}
                 alt={cat.name}
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
