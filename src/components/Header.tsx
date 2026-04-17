@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter, useLocation } from "@tanstack/react-router";
 import { Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getCartItems } from "@/lib/cart-store";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Products", href: "#products" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About Us", href: "#about-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", hash: "home" },
+  { label: "Products", hash: "products" },
+  { label: "Gallery", hash: "gallery" },
+  { label: "About Us", hash: "about-us" },
+  { label: "Reviews", hash: "reviews" },
+  { label: "Contact Us", hash: "contact" },
 ];
 
 export default function Header() {
