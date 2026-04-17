@@ -4,6 +4,25 @@ import { Star, ShoppingBag, Heart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { addToCart } from "@/lib/cart-store";
 import { toast } from "sonner";
+import sareeBlue from "@/assets/prod-saree-blue.jpg";
+import sareeMaroon from "@/assets/prod-saree-maroon.jpg";
+import kurtiPink from "@/assets/prod-kurti-pink.jpg";
+import kurtiYellow from "@/assets/prod-kurti-yellow.jpg";
+import lehengaGreen from "@/assets/prod-lehenga-green.jpg";
+import lehengaRed from "@/assets/prod-lehenga-red.jpg";
+import kidsAnarkali from "@/assets/prod-kids-anarkali.jpg";
+import necklace from "@/assets/prod-necklace.jpg";
+
+const PRODUCT_IMAGES: Record<string, string> = {
+  "Royal Blue Silk Saree": sareeBlue,
+  "Maroon Silk Saree": sareeMaroon,
+  "Pink Embroidered Kurti": kurtiPink,
+  "Yellow Festive Kurti": kurtiYellow,
+  "Green Bridal Lehenga": lehengaGreen,
+  "Red Bridal Lehenga": lehengaRed,
+  "Kids Anarkali Set": kidsAnarkali,
+  "Gold Temple Necklace": necklace,
+};
 
 type Product = {
   id: string;
@@ -67,7 +86,7 @@ export default function NewArrivals() {
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img
-                  src={p.image_url || "https://placehold.co/600x800?text=Product"}
+                  src={PRODUCT_IMAGES[p.name] || p.image_url || "https://placehold.co/600x800?text=Product"}
                   alt={p.name}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

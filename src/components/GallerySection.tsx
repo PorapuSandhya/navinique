@@ -1,6 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import bridalImg from "@/assets/gal-bridal.jpg";
+import silkSareesImg from "@/assets/gal-silk-sarees.jpg";
+import kurtisImg from "@/assets/gal-kurtis.jpg";
+import accessoriesImg from "@/assets/gal-accessories.jpg";
+import kidsImg from "@/assets/gal-kids.jpg";
+import lehengasImg from "@/assets/gal-lehengas.jpg";
+
+const GALLERY_IMAGES: Record<string, string> = {
+  "Bridal Collection": bridalImg,
+  "Silk Sarees": silkSareesImg,
+  "Festive Kurtis": kurtisImg,
+  "Ethnic Accessories": accessoriesImg,
+  "Kids Ethnic Wear": kidsImg,
+  "Designer Lehengas": lehengasImg,
+};
 
 type GalleryImage = {
   id: string;
@@ -67,7 +82,7 @@ export default function GallerySection() {
               className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer"
             >
               <img
-                src={img.image_url}
+                src={GALLERY_IMAGES[img.title] || img.image_url}
                 alt={img.title}
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
