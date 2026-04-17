@@ -17,6 +17,33 @@ const GALLERY_IMAGES: Record<string, string> = {
   "Designer Lehengas": lehengasImg,
 };
 
+// Map gallery titles + categories to product category slugs
+const TITLE_TO_SLUG: Record<string, string> = {
+  "Bridal Collection": "lehengas",
+  "Silk Sarees": "sarees",
+  "Festive Kurtis": "kurtis",
+  "Ethnic Accessories": "accessories",
+  "Kids Ethnic Wear": "kids-wear",
+  "Designer Lehengas": "lehengas",
+};
+
+const CATEGORY_TO_SLUG: Record<string, string> = {
+  Sarees: "sarees",
+  Lehengas: "lehengas",
+  Kurtis: "kurtis",
+  "Kids Wear": "kids-wear",
+  Accessories: "accessories",
+  Bridal: "lehengas",
+};
+
+const SLUG_TO_NAME: Record<string, string> = {
+  sarees: "Sarees",
+  lehengas: "Lehengas",
+  kurtis: "Kurtis",
+  "kids-wear": "Kids Wear",
+  accessories: "Accessories",
+};
+
 type GalleryImage = {
   id: string;
   title: string;
