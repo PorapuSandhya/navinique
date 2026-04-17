@@ -16,6 +16,9 @@ const navLinks = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const location = useLocation();
+  const router = useRouter();
+  const isHome = location.pathname === "/";
 
   const refreshCart = async () => {
     try {
@@ -32,6 +35,19 @@ export default function Header() {
     window.addEventListener("cart-updated", handler);
     return () => window.removeEventListener("cart-updated", handler);
   }, []);
+
+  const handleNavClick = async (e: React.MouseEvent, hash: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (isHome) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      await router.navigate({ to: "/" });
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-gold-light/30">
