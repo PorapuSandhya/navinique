@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter, useLocation } from "@tanstack/react-router";
 import { Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getCartItems } from "@/lib/cart-store";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Products", href: "#products" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About Us", href: "#about-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", hash: "home" },
+  { label: "Products", hash: "products" },
+  { label: "Gallery", hash: "gallery" },
+  { label: "About Us", hash: "about-us" },
+  { label: "Reviews", hash: "reviews" },
+  { label: "Contact Us", hash: "contact" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const location = useLocation();
+  const router = useRouter();
+  const isHome = location.pathname === "/";
 
   const refreshCart = async () => {
     try {
@@ -33,6 +36,19 @@ export default function Header() {
     return () => window.removeEventListener("cart-updated", handler);
   }, []);
 
+  const handleNavClick = async (e: React.MouseEvent, hash: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (isHome) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      await router.navigate({ to: "/" });
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-gold-light/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +63,8 @@ export default function Header() {
             {navLinks.map((link) => (
               <a
                 key={link.label}
-                href={link.href}
+                href={`/#${link.hash}`}
+                onClick={(e) => handleNavClick(e, link.hash)}
                 className="text-sm font-body text-foreground/70 hover:text-gold transition-colors tracking-wide uppercase"
               >
                 {link.label}
@@ -87,9 +104,9 @@ export default function Header() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={`/#${link.hash}`}
                   className="text-sm font-body text-foreground/70 hover:text-gold py-2 tracking-wide uppercase"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.hash)}
                 >
                   {link.label}
                 </a>
