@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
+import { resolveProductImage } from "@/lib/product-images";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -178,7 +179,7 @@ function CheckoutPage() {
               <div className="space-y-3 mb-4 max-h-60 overflow-y-auto">
                 {items.map((item) => (
                   <div key={item.id} className="flex gap-3">
-                    <img src={item.product.image_url || ""} alt={item.product.name} className="w-12 h-16 object-cover rounded" />
+                    <img src={resolveProductImage(item.product.name, item.product.image_url)} alt={item.product.name} className="w-12 h-16 object-cover rounded" />
                     <div className="flex-1 min-w-0">
                       <p className="font-body text-sm text-foreground truncate">{item.product.name}</p>
                       <p className="font-body text-xs text-muted-foreground">Qty: {item.quantity}</p>
