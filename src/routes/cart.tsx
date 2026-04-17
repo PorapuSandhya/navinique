@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { resolveProductImage } from "@/lib/product-images";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -50,9 +51,10 @@ function CartPage() {
                   className="flex gap-4 bg-card border border-border rounded-lg p-4"
                 >
                   <img
-                    src={item.product.image_url || ""}
+                    src={resolveProductImage(item.product.name, item.product.image_url)}
                     alt={item.product.name}
-                    className="w-24 h-32 object-cover rounded"
+                    loading="lazy"
+                    className="w-24 h-32 object-cover rounded flex-shrink-0"
                   />
                   <div className="flex-1">
                     <h3 className="font-display font-semibold text-foreground">{item.product.name}</h3>

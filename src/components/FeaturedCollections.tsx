@@ -33,6 +33,17 @@ export default function FeaturedCollections() {
       .then(({ data }) => setCategories(data || []));
   }, []);
 
+  const handleShop = (cat: Category) => {
+    // Notify NewArrivals to filter, then scroll to products section.
+    window.dispatchEvent(
+      new CustomEvent("category-selected", { detail: { id: cat.id, slug: cat.slug, name: cat.name } })
+    );
+    const el = document.getElementById("products");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section id="collections" className="section-padding bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,13 +60,15 @@ export default function FeaturedCollections() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {categories.map((cat, i) => (
-            <motion.div
+            <motion.button
               key={cat.id}
+              type="button"
+              onClick={() => handleShop(cat)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative aspect-[3/4] rounded-lg overflow-hidden cursor-pointer"
+              className="group relative aspect-[3/4] rounded-lg overflow-hidden cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-gold"
             >
               <img
                 src={CATEGORY_IMAGES[cat.slug] || cat.image_url || `https://placehold.co/400x533?text=${cat.name}`}
@@ -70,7 +83,7 @@ export default function FeaturedCollections() {
                   Shop Now →
                 </p>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>
