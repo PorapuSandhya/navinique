@@ -104,9 +104,9 @@ export default function Header() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={`/#${link.hash}`}
                   className="text-sm font-body text-foreground/70 hover:text-gold py-2 tracking-wide uppercase"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.hash)}
                 >
                   {link.label}
                 </a>
