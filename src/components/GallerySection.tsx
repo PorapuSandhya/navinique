@@ -54,6 +54,7 @@ type GalleryImage = {
 export default function GallerySection() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [filter, setFilter] = useState("All");
+  const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
 
   useEffect(() => {
     supabase
@@ -61,7 +62,36 @@ export default function GallerySection() {
       .select("id, title, image_url, category")
       .order("sort_order")
       .then(({ data }) => setImages(data || []));
+
+    supabase
+      .from("categories")
+      .select("id, slug")
+      .then(({ data }) => {
+        const map: Record<string, string> = {};
+        (data || []).forEach((c) => {
+          map[c.slug] = c.id;
+        });
+        setCategoryMap(map);
+      });
   }, []);
+
+  const handleImageClick = (img: GalleryImage) => {
+    const slug =
+      TITLE_TO_SLUG[img.title] ||
+      (img.category ? CATEGORY_TO_SLUG[img.category] : undefined);
+    if (!slug) return;
+    const id = categoryMap[slug];
+    if (!id) return;
+    window.dispatchEvent(
+      new CustomEvent("category-selected", {
+        detail: { id, slug, name: SLUG_TO_NAME[slug] || img.category || img.title },
+      })
+    );
+    const el = document.getElementById("products");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const categories = ["All", ...Array.from(new Set(images.map((i) => i.category).filter(Boolean)))];
   const filtered = filter === "All" ? images : images.filter((i) => i.category === filter);
