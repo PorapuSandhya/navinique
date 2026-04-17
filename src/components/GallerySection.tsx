@@ -153,7 +153,7 @@ export default function GallerySection() {
                   <p className="font-body text-xs text-cream/70">{img.category}</p>
                 )}
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
 
