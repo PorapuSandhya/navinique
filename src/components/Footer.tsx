@@ -1,12 +1,12 @@
 import { Heart } from "lucide-react";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Products", href: "#products" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About Us", href: "#about-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Products", href: "/#products" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "About Us", href: "/#about-us" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 export default function Footer() {

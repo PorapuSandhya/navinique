@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import heroImg1 from "@/assets/hero-boutique.jpg";
-import heroImg2 from "@/assets/hero-slide-2.jpg";
-import heroImg3 from "@/assets/hero-slide-3.jpg";
+import heroImg1 from "@/assets/hero-boutique.png";
+import heroImg2 from "@/assets/hero-slide-2.png";
+import heroImg3 from "@/assets/hero-slide-3.png";
 
 const slides = [
   {
@@ -40,7 +40,7 @@ export default function HeroSection() {
   const slide = slides[current];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-20">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -63,17 +63,17 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="max-w-xl"
+            className="max-w-xl p-8 md:p-10 rounded-3xl backdrop-blur-md bg-black/20 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]"
           >
-            <p className="text-gold font-elegant text-lg md:text-xl italic mb-4 tracking-wider">
+            <p className="text-gold font-elegant text-lg md:text-xl italic mb-4 tracking-wider drop-shadow-md">
               {slide.tagline}
             </p>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-6 drop-shadow-lg">
               {slide.heading[0]}
-              <span className="text-gold-gradient">{slide.heading[1]}</span>
+              <span className="text-gold-gradient drop-shadow-sm">{slide.heading[1]}</span>
               {slide.heading[2]}
             </h1>
-            <p className="font-body text-foreground/70 text-base md:text-lg mb-8 leading-relaxed max-w-md">
+            <p className="font-body text-white/90 text-base md:text-lg mb-8 leading-relaxed max-w-md drop-shadow-md">
               {slide.description}
             </p>
             <div className="flex flex-wrap gap-4">

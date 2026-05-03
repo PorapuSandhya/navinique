@@ -22,8 +22,8 @@ export function useCart() {
     refresh();
   }, [refresh]);
 
-  const add = async (productId: string, qty = 1) => {
-    await addToCart(productId, qty);
+  const add = async (productId: string, qty = 1, size?: string, color?: string) => {
+    await addToCart(productId, qty, size, color);
     await refresh();
   };
 

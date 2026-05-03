@@ -8,8 +8,8 @@ import { resolveProductImage } from "@/lib/product-images";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
+    title: "Shopping Cart — Devi Elegance",
     meta: [
-      { title: "Shopping Cart — Devi Elegance" },
       { name: "description", content: "Review your cart and proceed to checkout." },
     ],
   }),
@@ -66,6 +66,13 @@ function CartPage() {
                         </span>
                       )}
                     </div>
+
+                    {(item.size || item.color) && (
+                      <div className="flex gap-4 mt-2 text-xs font-body text-muted-foreground">
+                        {item.size && <span>Size: <span className="text-foreground font-medium">{item.size}</span></span>}
+                        {item.color && <span>Color: <span className="text-foreground font-medium">{item.color}</span></span>}
+                      </div>
+                    )}
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() => update(item.id, item.quantity - 1)}
@@ -117,7 +124,7 @@ function CartPage() {
               </div>
               <Link
                 to="/checkout"
-                className="w-full flex items-center justify-center gap-2 bg-gold-gradient text-background font-body font-bold py-3 rounded-sm uppercase text-sm tracking-wider hover-gold-glow transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-gold-gradient text-background font-body font-medium py-3 rounded-sm uppercase text-sm tracking-wider hover-gold-glow transition-all"
               >
                 Proceed to Checkout <ArrowRight size={16} />
               </Link>

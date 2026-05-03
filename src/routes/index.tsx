@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLocation } from "@tanstack/react-router";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import FeaturedCollections from "@/components/FeaturedCollections";
@@ -24,6 +25,21 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      // Small delay to ensure all sections are rendered
+      const timer = setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [hash]);
+
   return (
     <div className="min-h-screen">
       <Header />
